@@ -1,0 +1,113 @@
+body { 
+    padding-top: 80px; 
+    height: 100%;
+}
+
+td {
+    border: 1px solid #6ae6ac;
+    width: 25px;
+    height: 25px;
+}
+
+.key {
+	border: 1px solid #6ae6ac;
+	width: 25px;
+    height: 25px;
+    margin-right: 10px;
+}
+
+ul {
+	list-style-type: none;
+}
+
+.btn-space {
+	margin-right: 5px;
+}
+
+#update {
+	margin-bottom: 15px; 
+	margin-top: 10px;
+}
+
+.wall {
+	transition : background-color 0.1s ease-in-out;
+	background-color: #013508;
+	border-color: #013508;
+}
+
+.none {
+	transition : background-color 0.1s ease-in-out;
+	background-color: white;
+	border-color: #79d9ce;
+}
+
+.searching {
+	transition : background-color 0.08s ease-in-out;
+	background-color: #b55ecf;
+	border-color: #b55ecf;
+}
+
+.visited {
+	transition : background-color 0.08s ease-in-out;
+	background-color: #f5a8f1;
+	border-color: #f5a8f1;
+}
+
+.success {
+	transition : background-color 0.08s ease-in-out;
+	background-color: #ffee31;
+	border-color: #ffee31;
+}
+
+.start {
+	background-color: green;
+	border-color: green;
+}
+
+.end {
+	background-color: red;
+	border-color: red;
+}
+
+#bigTableContainer {
+	margin-top: 30px;
+}
+
+.custom-section {
+	margin-bottom: 20px;
+}
+
+#modalTitleContainer {
+	padding-top: 10px;
+}
+
+#results {
+	height: 488px;
+	width: 120px;
+	background-color: #ffc107;
+	position: fixed;
+	right: 25px;
+	bottom: 10px;
+	color: rgb(7, 7, 7);
+	font-size: 25px;
+	text-align: center;
+	border: 1px dashed black;
+}
+
+#resultsIcon {
+	margin-bottom: 3px;
+	margin-top: 7px;
+	font-size: 16px;
+}
+
+#duration, #length {
+	padding: 3px;
+}
+
+#infoModalBtn {
+	margin-left: 830px;
+}
+
+.fun-fact {
+	color: rgb(41, 112, 192);
+}
