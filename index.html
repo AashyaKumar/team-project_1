@@ -7,7 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="styles/magic.min.css">
 	<script src="https://kit.fontawesome.com/d1f3dd87b7.js" crossorigin="anonymous"></script>
 </head>
-<body>
+<body >
 	<nav class="navbar navbar-expand-sm fixed-top navbar-dark bg-dark" id="myNavbar">
   		<a class="navbar-brand" href="#" id="logo">Mars Rover Navigator</a>
   		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,7 +23,7 @@
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 						<a class="dropdown-item" href="#">A*</a>
 					    <a class="dropdown-item" href="#">Breadth-First Search (BFS)</a>
-						<a class="dropdown-item" href="#">Depth-First Search (DFS)</a>
+						<!--<a class="dropdown-item" href="#">Depth-First Search (DFS)</a>-->
 						<a class="dropdown-item" href="#">Greedy Best-First Search</a>
 						<a class="dropdown-item" href="#">Dijkstra</a>
 					    <a class="dropdown-item" href="#">Jump Point Search</a>
@@ -83,8 +83,15 @@
  		<div class="d-flex p-2">
  			<div class="key"></div>  
  			<div>Unvisited Node</div>
- 		</div>
- 	</div>
+		 </div>
+		 
+		 <div class="d-flex p-2" >
+			<div class=" key coin"></div>  
+			<div class="key coin1"></div>
+			<div>Sign of Life 1 & 2</div>
+	    </div>
+
+	 </div>
 
  	<div class="d-flex flex-column align-items-center" id="bigTableContainer">
 		<div id="tableContainer"></div>
@@ -127,9 +134,9 @@
 						    <h5 class="card-title">What is Mars Rover Navigator?</h5>
 						    <p class="card-text">
 						    <em>Mars Rover Navigator is used to visualise different Path Finding Algorithms.  
-						    <p>This program navigates rover from starting node to the target node using any of the selected algorithm. The search can only go either horizontally or vertically at a time, with each movement having a cost of one.</p>
+						    <p>This program navigates rover from starting node to the target node in order to search for sign of lives that are present inbetween using any of the selected algorithm. The search can only go either horizontally or vertically at a time, with each movement having a cost of one.</p>
 
-						    <p>Once the target node is found, the shortest path will be shown in yellow color.
+						    <p>Once the target node or sign of lives nodes are found, the shortest path will be shown in yellow color.
 						    </p>
 						    </em></p>
 						  </div>
@@ -141,7 +148,7 @@
 						    <p class="card-text">Click the 'Select Algorithm' tab and select one of the algorithms from the dropdown menu.</p>
 						    <p><i>To guide you more through these algorithm, there is an 'Info' button that is located at the bottom of the page.</i></p>
 						  </div>
-						  <img class="card-img-bottom" src="images/Algorithms.png" alt="Card image cap" style="height: 20em"> 
+						  <img class="card-img-bottom" src="images/Algorithms1.png" alt="Card image cap" style="height: 20em"> 
 						</div>
 						<br>
 						<div class="card border-primary mb-3">
@@ -153,20 +160,28 @@
 						</div>
 						<br>
 						<div class="card border-primary mb-3">
+							<div class="card-body">
+							  <h5 class="card-title">Sign of Life 1 and 2</h5>
+							  <p class="card-text">Sign of Life 1 is shown in light blue color and Sign of life 2 is shown in dark blue color. The Mars Rover first goes in search of Sign of life 1 using any of the selected Algorithm and then for Sign of life 2 and ultimately towards the target node, thus taking shortest path between any two colored nodes </p>
+							</div>
+							<img class="card-img-bottom" src="images/SignofLife.png" alt="Card image cap" style="height: 20em">
+						  </div>
+						<br>
+						<div class="card border-primary mb-3">
 						  <div class="card-body">
 						    <h5 class="card-title">Now we are ready to start searching</h5>
 							<p class="card-text">Press the 'Start Searching' button in the upper right-hand corner to start your pathfinding algorithm for the Mars Rover!</p>
 							<p class="card-text">The shortest path will be displayed in yellow color</p>
 						  </div>
-						  <img class="card-img-bottom" src="images/path.png" alt="Card image cap" style="height: 20em">
+						  <img class="card-img-bottom" src="images/path1.png" alt="Card image cap" style="height: 20em">
 						</div>
 						<br>
 						<div class="card border-success mb-3">
 						  <div class="card-body">
-						    <h5 class="card-title">You can also move starting node and target node</h5>
-						    <p class="card-text">Hold the mouse down and drag the starting(Green color)/target(Red color) node to a new location.</p>
+						    <h5 class="card-title">You can also move starting, target node and Sign of Life nodes</h5>
+						    <p class="card-text">Hold the mouse down and drag the starting(Green color)/target(Red color) or Sign of Life node to a new location.</p>
 						  </div>
-						  <img class="card-img-bottom" src="images/startendnode.png" alt="Card image cap" style="height: 20em">
+						  <img class="card-img-bottom" src="images/nodes1.png" alt="Card image cap" style="height: 20em">
 						</div>
 						<br>
 						<div class="card border-success mb-3">
@@ -214,7 +229,7 @@
 		      	<br>
 		      	<br>
 		        <div id="accordion">
-				  <div class="card">
+				 <!--- <div class="card">
 				    <div class="card-header" id="headingOne">
 				      <h5 class="mb-0">
 				        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -236,7 +251,7 @@
 				        </p>
 				      </div>
 				    </div>
-				  </div>
+				  </div>-->
 				  <div class="card">
 				    <div class="card-header" id="headingTwo">
 				      <h5 class="mb-0">
