@@ -63,16 +63,16 @@ ul {
 }
 
 .start {
-	background-color: black;
-	border-color: black;
+	background-color: green;
+	border-color: green;
 	background-image:url('rover.png');
 	background-position:center;
 	background-size:cover;
 }
 
 .end {
-	background-color: black;
-	border-color: black;
+	background-color: red;
+	border-color: red;
 	background-image:url('star9.png');
 	background-position:center;
 	background-size:cover;
@@ -80,8 +80,8 @@ ul {
 }
 
 .coin{
-	/*background-color: rgb(158, 152, 231);
-	border-color: rgb(158, 152, 231);*/
+	background-color: rgb(158, 152, 231);
+	border-color: rgb(158, 152, 231);
 	background-image:url('signOflife.png');
 	background-position:center;
 	background-size:cover;
@@ -89,8 +89,8 @@ ul {
 }
 
 .coin1{
-	/*background-color: rgb(30, 6, 134);
-	border-color: rgb(30, 6, 134);*/
+	background-color: rgb(30, 6, 134);
+	border-color: rgb(30, 6, 134);
 	background-image:url('water2.png');
 	background-position:center;
 	background-size:cover;
