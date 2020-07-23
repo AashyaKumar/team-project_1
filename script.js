@@ -1245,8 +1245,7 @@ var colorClass = cellsToBuild[i][1];
 // Wait until its time to animate
 await new Promise(resolve => setTimeout(resolve, delay));
 
-$(cell).removeClass();
-$(cell).addClass(colorClass);
+
 if(cellsToBuild[i][1]=="success" || cellsToBuild[i][1]=="visited"){
         //$(cell).removeClass();
         $(cell).addClass(colorClass);
