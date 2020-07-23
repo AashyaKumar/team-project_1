@@ -1,16 +1,19 @@
 body { 
     padding-top: 80px; 
     height: 100%;
+   background-image:url('mars.png');
+   background-position:center;
+   background-size:cover;
 }
 
 td {
-    border: 1px solid #6ae6ac;
+    border: 1.5px solid black;
     width: 25px;
     height: 25px;
 }
 
 .key {
-	border: 1px solid #6ae6ac;
+	border: 1px solid black;
 	width: 25px;
     height: 25px;
     margin-right: 10px;
@@ -62,22 +65,35 @@ ul {
 .start {
 	background-color: green;
 	border-color: green;
+	background-image:url('rover.png');
+	background-position:center;
+	background-size:cover;
 }
 
 .end {
 	background-color: red;
 	border-color: red;
+	background-image:url('star9.png');
+	background-position:center;
+	background-size:cover;
+	
 }
 
 .coin{
 	background-color: rgb(158, 152, 231);
 	border-color: rgb(158, 152, 231);
+	background-image:url('signOflife.png');
+	background-position:center;
+	background-size:cover;
 	
 }
 
 .coin1{
 	background-color: rgb(30, 6, 134);
 	border-color: rgb(30, 6, 134);
+	background-image:url('water2.png');
+	background-position:center;
+	background-size:cover;
 } 
 
 #bigTableContainer {
