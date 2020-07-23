@@ -1247,6 +1247,14 @@ await new Promise(resolve => setTimeout(resolve, delay));
 
 $(cell).removeClass();
 $(cell).addClass(colorClass);
+if(cellsToBuild[i][1]=="success" || cellsToBuild[i][1]=="visited"){
+        //$(cell).removeClass();
+        $(cell).addClass(colorClass);
+    }else if(cellsToBuild[i][1]=="searching"){
+        $(cell).removeClass("visited");
+        $(cell).addClass(colorClass);
+    }
+
 }
 cellsToBuild = [];
 //console.log("End of animation has been reached!");
