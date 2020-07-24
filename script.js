@@ -1002,7 +1002,7 @@ cellsToBuild.push( [[i, j], "success"] );
 return pathFound;
 }
 
-async function randomMaze(){
+/*async function randomMaze(){
 inProg = true;
 clearBoard(keepWalls = false);
 var visited = createVisited();
@@ -1041,7 +1041,7 @@ await animateCells();
 inProg = false;
 return;
 }
-
+*/
 async function spiralMaze(){
 inProg = true;
 clearBoard(keepWalls = false);
