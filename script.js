@@ -1252,8 +1252,10 @@ if(cellsToBuild[i][1]=="success" || cellsToBuild[i][1]=="visited"){
     }else if(cellsToBuild[i][1]=="searching"){
         $(cell).removeClass("visited");
         $(cell).addClass(colorClass);
+    }else{
+         $(cell).removeClass();
+        $(cell).addClass(colorClass);
     }
-
 }
 cellsToBuild = [];
 //console.log("End of animation has been reached!");
