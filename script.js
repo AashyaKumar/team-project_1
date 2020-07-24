@@ -1,5 +1,4 @@
 /* ---- Variable Declarations ---- */
-
 var allRows = 25;
 var allCols = 40;
 var inProg = false;
@@ -11,15 +10,19 @@ var justCompleted = false;
 var speedOfAnimation = "Fast";
 var stateOfAnimation = null;
 var firstCell = [11, 15];
-var lastCell = [11, 25];
+var lastCell = [11,25];
 var movingBegin = false;
 var movingFinish = false;
 //change 1
-var movingCoin=false;
+/*var movingCoin=false;
 var movingCoin1=false;
 var coinCell=[5,6];
-var coin1Cell=[5,34];
-//
+var coin1Cell=[9,10];
+//*/
+var ctr=0;
+var k=0;
+//var ctr1=0;
+var coinCell=[];
 
 function generateGrid( rows, cols ) {
     var grid = "<table>";
@@ -135,13 +138,13 @@ var index = $( "td" ).index( this );
 var firstCellIndex = (firstCell[0] * (allCols)) + firstCell[1];
 var lastCellIndex = (lastCell[0] * (allCols)) + lastCell[1];
 //change 2
-var coinCellIndex = (coinCell[0] * (allCols)) + coinCell[1];
+/*var coinCellIndex = (coinCell[0] * (allCols)) + coinCell[1];
 var coin1CellIndex = (coin1Cell[0] * (allCols)) + coin1Cell[1];
-//
+//*/
 if ( !inProg ){
 // Clear board if just finished
 if ( justCompleted  && !inProg ){
-clearBoard( keepWalls = true );
+clearBoard( keepWalls = true,keepCoins=true );
 justCompleted = false;
 }
 if (index == firstCellIndex){
@@ -153,7 +156,7 @@ movingFinish = true;
 
 }
 //change 3
-else if (index == coinCellIndex){
+/*else if (index == coinCellIndex){
     movingCoin = true;
     //console.log("Now moving coin!");
 }
@@ -161,7 +164,7 @@ else if (index == coin1CellIndex){
     movingCoin1 = true;
     //console.log("Now moving coin1!");
 } 
-//
+//*/
  else {
 makeWalls = true;
 }
@@ -173,46 +176,46 @@ makeWalls = false;
 movingBegin = false;
 movingFinish = false;
 //change 4
-movingCoin =false;
-movingCoin1 = false;
+//movingCoin =false;
+//movingCoin1 = false;
 //
 });
 
 $( "td" ).mouseenter(function() {
     //change 5
-if (!makeWalls && !movingBegin && !movingFinish && !movingCoin && !movingCoin1){ return; }
+if (!makeWalls && !movingBegin && !movingFinish){ return; }
 //
     var index = $( "td" ).index( this );
     var firstCellIndex = (firstCell[0] * (allCols)) + firstCell[1];
 var lastCellIndex = (lastCell[0] * (allCols)) + lastCell[1];
 //change 6
-var coinCellIndex = (coinCell[0] * (allCols)) + coinCell[1];
-    var coin1CellIndex = (coin1Cell[0] * (allCols)) + coin1Cell[1];
+//var coinCellIndex = (coinCell[0] * (allCols)) + coinCell[1];
+   // var coin1CellIndex = (coin1Cell[0] * (allCols)) + coin1Cell[1];
     //
     if (!inProg){
     if (justCompleted){
-    clearBoard( keepWalls = true );
+    clearBoard( keepWalls = true,keepCoins=true );
     justCompleted = false;
     }
     //console.log("Cell index = " + index);
     //change 7
-    if (movingBegin && index != lastCellIndex && index != coinCellIndex && index != coin1CellIndex) {
+    if (movingBegin && index != lastCellIndex) {
         //
     moveStartOrEnd(firstCellIndex, index, "start");
     } 
     //change 8
-    else if (movingFinish && index != firstCellIndex && index != coinCellIndex && index != coin1CellIndex) {
+    else if (movingFinish && index != firstCellIndex) {
         //
     moveStartOrEnd(lastCellIndex, index, "end");
     } 
     //change 9
-    else if (movingCoin && index != firstCellIndex && index != lastCellIndex && index != coin1CellIndex){
-        moveStartOrEnd(lastCellIndex, index, "coin");
-    }else if (movingCoin1 && index != firstCellIndex && index != lastCellIndex && index != coinCellIndex){
-        moveStartOrEnd(coin1CellIndex, index, "coin1");
-    }
+    //else if (movingCoin && index != firstCellIndex && index != lastCellIndex){
+     //   moveStartOrEnd(lastCellIndex, index, "coin");
+   // else if (movingCoin1 && index != firstCellIndex && index != lastCellIndex){
+     //   moveStartOrEnd(coin1CellIndex, index, "coin1");
+  //  }
     //change 10
-    else if (index != firstCellIndex && index != lastCellIndex && index != coinCellIndex && index != coin1CellIndex) {
+    else if (index != firstCellIndex && index != lastCellIndex) {
         //
     $(this).toggleClass("wall");
     }
@@ -220,20 +223,26 @@ var coinCellIndex = (coinCell[0] * (allCols)) + coinCell[1];
 });
 
 $( "td" ).click(function() {
+    
     var index = $( "td" ).index( this );
     var firstCellIndex = (firstCell[0] * (allCols)) + firstCell[1];
     var lastCellIndex = (lastCell[0] * (allCols)) + lastCell[1];
     //change 11
-    var coinCellIndex = (coinCell[0] * (allCols)) + coinCell[1];
-    var coin1CellIndex = (coin1Cell[0] * (allCols)) + coin1Cell[1];
+   // var coinCellIndex = (coinCell[0] * (allCols)) + coinCell[1];
+    //var coin1CellIndex = (coin1Cell[0] * (allCols)) + coin1Cell[1];
     //change 12
-    if ((inProg == false) && !(index == firstCellIndex) && !(index == lastCellIndex) && !(index == coinCellIndex) && !(index == coin1CellIndex)){
+    if ((inProg == false) && !(index == firstCellIndex) && !(index == lastCellIndex)){
     //
         if ( justCompleted ){
-    clearBoard( keepWalls = true );
+    clearBoard( keepWalls = true,keepCoins=true );
     justCompleted = false;
     }
-    $(this).toggleClass("wall");
+    $(this).addClass("coin");
+    ctr=ctr+1;
+    var x=Math.floor(index/allCols);
+    var y=index%allCols;
+    coinCell.push([x,y]);
+
     }
 });
 
@@ -242,8 +251,8 @@ makeWalls = false;
 movingBegin = false;
 movingFinish = false;
 //change 13
-movingCoin = false;
-movingCoin1 = false;
+//movingCoin = false;
+//movingCoin1 = false;
 //
 });
 
@@ -259,7 +268,7 @@ traverseGraph(algo);
 
 $( "#clearBtn" ).click(function(){
     if ( inProg ){ update("wait"); return; }
-clearBoard(keepWalls = false);
+clearBoard(keepWalls = false,keepCoins=false);
 });
 
 
@@ -286,8 +295,7 @@ if ( inProg ){ update("wait"); return; }
 maze = $(this).text();
 //if (maze == "Random"){
 //randomMaze();
-//} else 
-   if (maze == "Recursive Division"){
+  if (maze == "Recursive Division"){
 recursiveDivMaze(null);
 } else if (maze == "Recursive Division (Vertical Skew)"){
 recursiveDivMaze("VERTICAL");
@@ -316,15 +324,15 @@ if (startOrEnd == "start"){
         console.log("Moving end to [" + newCellX + ", " + newCellY + "]")
         } 
     //change 14
-    else if(startOrEnd == "coin"){
+    /*else if(startOrEnd == "coin"){
         coinCell = [newCellX, newCellY];
         console.log("Moving end to [" + newCellX + ", " + newCellY + "]")
     }else if(startOrEnd == "coin1"){
         coin1Cell = [newCellX, newCellY];
         console.log("Moving end to [" + newCellX + ", " + newCellY + "]")
-    }//
+    }//*/
    //cut statement
-    clearBoard(keepWalls = true);
+    clearBoard(keepWalls = true,keepCoins=true);
     return;
 }
 
@@ -342,7 +350,7 @@ var newEndY = Math.floor(newIndex / allCols);
     return;
 }
 //change 15
-function moveCoin(prevIndex, newIndex){
+/*function moveCoin(prevIndex, newIndex){
     // Erase last end cell
     $($("td").find(prevIndex)).removeClass();
 
@@ -369,7 +377,7 @@ function moveCoin1(prevIndex, newIndex){
     firstCell = [newStartX, newStartY];
     return;
 }
-//
+//*/
 
 function updateSpeedDisplay(){
 if (speedOfAnimation == "Slow"){
@@ -447,7 +455,7 @@ return l;
 
 async function traverseGraph(algo){
     inProg = true;
-clearBoard( keepWalls = true );
+clearBoard( keepWalls = true,keepCoins=true );
 var startTime = Date.now();
 var pathFound = executeAlgo();
 var endTime = Date.now();
@@ -462,6 +470,7 @@ justCompleted = true;
 }
 
 function executeAlgo(){
+    var i=k;
 /*if (algo == "Depth-First Search (DFS)"){
 var visited = createVisited();
 var pathFound = DFS(firstCell[0], firstCell[1], visited);
@@ -469,25 +478,187 @@ var pathFound = DFS(firstCell[0], firstCell[1], visited);
 //change 16
 if (algo == "Breadth-First Search (BFS)"){
 //change 17
-var pathFound = BFS(firstCell,coinCell);
-var pathFound =BFS(coinCell,coin1Cell);
-var pathFound =BFS(coin1Cell,lastCell);
+//var pathFound = BFS(firstCell,coinCell);
+//var pathFound =BFS(coinCell,coin1Cell);
+//var pathFound =BFS(coin1Cell,lastCell);
+        
+        //var i=k;
+        var pathFound;
+                if(ctr==0){
+        
+        pathFound = BFS(firstCell,lastCell);
+         }
+       else if(ctr==1){
+           pathFound=BFS(firstCell,coinCell[0]);
+          pathFound=BFS(coinCell[0],lastCell);
+
+     }
+      else{
+            
+          pathFound=BFS(firstCell,coinCell[k]);
+
+        for(i=k;i<(ctr-1);i++){
+          pathFound=BFS(coinCell[i],coinCell[i+1]);
+          //coinCell.shift();
+        }
+      
+        
+           pathFound=BFS(coinCell[i],lastCell);
+          }
+          k=ctr;
+         // clearBoard(keepWalls=false,keepCoin=false);
+         
+            //for(var i=0;i<(ctr-1);i++){
+             //  coinCell[i][0].pop();
+             //  coinCell[i][1].pop();
+            //}
+         
+
+          // coinCell=[];
+
+        
+            //coinCell.splice(0,ctr);
+
+         
+
+         // if(coinCell==0){
+          //  clearBoard();
+         // }
+         //ctr=0; // clearBoard(keepWalls=true,keepCoin=true);
+       /* else{
+            startC1=coinCell.pop();
+            var pathFound=BFS(startCell,startC1);
+            coinCell.push(startC1);
+        
+        for(i=1;i<(ctr);i++){
+             startC1=coinCell.pop();
+              endC1=coinCell.pop();
+            coinCell.push(endC1);
+        var pathFound = BFS(startC1,endC1);
+        
+       }
+
+        endC1=coinCell.pop();
+       
+       var pathFound = BFS(endC1,endCell);
+   }
+       
+        //for(i=1;i<ctr-1;i++){
+         //   var pathFound=BFS(coinCell,coinCell,i);
+        //}
+        ///i=(ctr-1);
+        //BFS(coinCell,endCell,i)
+        //var pathFound =BFS(coinCell,coin1Cell);
+        //var pathFound =BFS(coinCell,endCell);*/
 } else if (algo == "Dijkstra"){
-    var pathFound = dijkstra(firstCell,coinCell);
-    var pathFound = dijkstra(coinCell,coin1Cell);
-    var pathFound = dijkstra(coin1Cell,lastCell);
+     //var i=k;
+        var pathFound;
+                if(ctr==0){
+        
+        pathFound = dijkstra(firstCell,lastCell);
+         }
+       else if(ctr==1){
+           pathFound=dijkstra(firstCell,coinCell[0]);
+          pathFound=dijkstra(coinCell[0],lastCell);
+
+     }
+      else{
+            
+          pathFound=dijkstra(firstCell,coinCell[k]);
+
+        for(i=k;i<(ctr-1);i++){
+          pathFound=dijkstra(coinCell[i],coinCell[i+1]);
+          //coinCell.shift();
+        }
+      
+        
+           pathFound=dijkstra(coinCell[i],lastCell);
+          }
+          k=ctr;
+    //var pathFound = dijkstra(firstCell,coinCell);
+   // var pathFound = dijkstra(coinCell,coin1Cell);
+   // var pathFound = dijkstra(coin1Cell,lastCell);
 } else if (algo == "A*"){
-    var pathFound = AStar(firstCell,coinCell);
-    var pathFound = AStar(coinCell,coin1Cell);
-    var pathFound = AStar(coin1Cell,lastCell);
+    var pathFound;
+                if(ctr==0){
+        
+        pathFound = AStar(firstCell,lastCell);
+         }
+       else if(ctr==1){
+           pathFound=AStar(firstCell,coinCell[0]);
+          pathFound=AStar(coinCell[0],lastCell);
+
+     }
+      else{
+            
+          pathFound=AStar(firstCell,coinCell[k]);
+
+        for(i=k;i<(ctr-1);i++){
+          pathFound=AStar(coinCell[i],coinCell[i+1]);
+          //coinCell.shift();
+        }
+      
+        
+           pathFound=AStar(coinCell[i],lastCell);
+          }
+          k=ctr;
+   // var pathFound = AStar(firstCell,coinCell);
+   // var pathFound = AStar(coinCell,coin1Cell);
+   // var pathFound = AStar(coin1Cell,lastCell);
 } else if (algo == "Greedy Best-First Search"){
-    var pathFound = greedyBestFirstSearch(firstCell,coinCell);
-    var pathFound = greedyBestFirstSearch(coinCell,coin1Cell);
-    var pathFound = greedyBestFirstSearch(coin1Cell,lastCell);
+    var pathFound;
+                if(ctr==0){
+        
+        pathFound =greedyBestFirstSearch(firstCell,lastCell);
+         }
+       else if(ctr==1){
+           pathFound=greedyBestFirstSearch(firstCell,coinCell[0]);
+          pathFound=greedyBestFirstSearch(coinCell[0],lastCell);
+
+     }
+      else{
+            
+          pathFound=greedyBestFirstSearch(firstCell,coinCell[k]);
+
+        for(i=k;i<(ctr-1);i++){
+          pathFound=greedyBestFirstSearch(coinCell[i],coinCell[i+1]);
+          //coinCell.shift();
+        }
+      
+        
+           pathFound=greedyBestFirstSearch(coinCell[i],lastCell);
+          }
+          k=ctr;
+    //var pathFound = greedyBestFirstSearch(firstCell,coinCell);
+   // var pathFound = greedyBestFirstSearch(coinCell,coin1Cell);
+   // var pathFound = greedyBestFirstSearch(coin1Cell,lastCell);
 } else if (algo == "Jump Point Search"){
-    var pathFound = jumpPointSearch(firstCell,coinCell);
-    var pathFound = jumpPointSearch(coinCell,coin1Cell);
-    var pathFound = jumpPointSearch(coin1Cell,lastCell);
+    var pathFound;
+                if(ctr==0){
+        
+        pathFound =jumpPointSearch(firstCell,lastCell);
+         }
+       else if(ctr==1){
+           pathFound=jumpPointSearch(firstCell,coinCell[0]);
+          pathFound=jumpPointSearch(coinCell[0],lastCell);
+
+     }
+      else{
+            
+          pathFound=jumpPointSearch(firstCell,coinCell[k]);
+
+        for(i=k;i<(ctr-1);i++){
+          pathFound=jumpPointSearch(coinCell[i],coinCell[i+1]);
+          //coinCell.shift();
+        }
+      
+        
+           pathFound=jumpPointSearch(coinCell[i],lastCell);
+          }
+          k=ctr;
+    //var pathFound = jumpPointSearch(firstCell,coinCell);
+   // var pathFound = jumpPointSearch(coinCell,coin1Cell);
+    //var pathFound = jumpPointSearch(coin1Cell,lastCell);
 }
 return pathFound;
 }
@@ -1001,7 +1172,9 @@ cellsToBuild.push( [[i, j], "success"] );
 }
 return pathFound;
 }
-
+//for(i=0;i<ctr;i++){
+   // coinCell.pop();
+//}
 /*async function randomMaze(){
 inProg = true;
 clearBoard(keepWalls = false);
@@ -1040,11 +1213,11 @@ cellsToBuild.push([ [i, j], "wall"]);
 await animateCells();
 inProg = false;
 return;
-}
-*/
+}*/
+
 async function spiralMaze(){
 inProg = true;
-clearBoard(keepWalls = false);
+clearBoard(keepWalls = false,keepCoins=false);
 
 var length = 1;
 var direction = {
@@ -1078,7 +1251,7 @@ return (cell[0] >= 0 && cell[1] >= 0 && cell[0] < allRows && cell[1] < allCols);
 
 async function recursiveDivMaze(bias){
 inProg = true;
-clearBoard(keepWalls = false);
+clearBoard(keepWalls = false,keepCoins=false);
 
 //Animate edge walls
 for (var i = 0; i < allRows; i++){
@@ -1231,15 +1404,15 @@ stateOfAnimation = null;
 var cells = $("#tableContainer").find("td");
 var firstCellIndex = (firstCell[0] * (allCols)) + firstCell[1];
 var lastCellIndex = (lastCell[0] * (allCols)) + lastCell[1];
-var coinCellIndex = (coinCell[0] * (allCols)) + coinCell[1];
-var coin1CellIndex = (coin1Cell[0] * (allCols)) + coin1Cell[1];
+//var coinCellIndex = (coinCell[0] * (allCols)) + coinCell[1];
+//var coin1CellIndex = (coin1Cell[0] * (allCols)) + coin1Cell[1];
 var delay = getDelay();
 for (var i = 0; i < cellsToBuild.length; i++){
 var cellCoordinates = cellsToBuild[i][0];
 var x = cellCoordinates[0];
 var y = cellCoordinates[1];
 var num = (x * (allCols)) + y;
-if (num == firstCellIndex || num == coinCellIndex || num==lastCellIndex || num==coin1CellIndex){ continue; }
+if (num == firstCellIndex ||  num==lastCellIndex){ continue; }
 var cell = cells[num];
 var colorClass = cellsToBuild[i][1];
 
@@ -1248,13 +1421,13 @@ await new Promise(resolve => setTimeout(resolve, delay));
 
 
 if(cellsToBuild[i][1]=="success" || cellsToBuild[i][1]=="visited"){
-       // $(cell).removeClass();
+        //$(cell).removeClass();
         $(cell).addClass(colorClass);
     }else if(cellsToBuild[i][1]=="searching"){
         $(cell).removeClass("visited");
         $(cell).addClass(colorClass);
     }else{
-       $(cell).removeClass();
+         $(cell).removeClass();
         $(cell).addClass(colorClass);
     }
 }
@@ -1306,29 +1479,40 @@ console.log("Delay = " + delay);
 return delay;
 }
 
-function clearBoard( keepWalls ){
+function clearBoard( keepWalls,keepCoins){
 var cells = $("#tableContainer").find("td");
 var firstCellIndex = (firstCell[0] * (allCols)) + firstCell[1];
 var lastCellIndex = (lastCell[0] * (allCols)) + lastCell[1];
-var coinCellIndex = (coinCell[0] * (allCols)) + coinCell[1];
-var coin1CellIndex = (coin1Cell[0] * (allCols)) + coin1Cell[1];
+//var coinCellIndex = (coinCell[0] * (allCols)) + coinCell[1];
+//var coin1CellIndex = (coin1Cell[0] * (allCols)) + coin1Cell[1];
+//k=ctr;
 for (var i = 0; i < cells.length; i++){
-isWall = $( cells[i] ).hasClass("wall");
+var isWall = $( cells[i] ).hasClass("wall");
+var isCoin = $( cells[i] ).hasClass("coin");
 $( cells[i] ).removeClass();
 if (i == firstCellIndex){
 $(cells[i]).addClass("start");
 } else if (i == lastCellIndex){
 $(cells[i]).addClass("end");
 }
-else if (i == coinCellIndex){
+
+/*else if (i == coinCellIndex){
     $(cells[i]).addClass("coin");
 }else if(i == coin1CellIndex){
     $(cells[i]).addClass("coin1");
- }
+ }*/
 else if ( keepWalls && isWall ){
 $(cells[i]).addClass("wall");
+}else if(keepCoins && isCoin){
+   $(cells[i]).addClass("coin"); 
 }
+//coinCell=[];
 }
+//for(i=0;i<(ctr);i++){
+  // coinCell.pop();
+//}
+
+//coinCell=[];
 }
 
 // Ending statements
