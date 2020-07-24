@@ -18,7 +18,7 @@ var movingFinish = false;
 var movingCoin=false;
 var movingCoin1=false;
 var coinCell=[5,6];
-var coin1Cell=[9,10];
+var coin1Cell=[28,7];
 //
 
 function generateGrid( rows, cols ) {
