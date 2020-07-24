@@ -284,9 +284,10 @@ console.log("Speed has been changd to: " + speedOfAnimation);
 $( "#mazes .dropdown-item").click(function(){
 if ( inProg ){ update("wait"); return; }
 maze = $(this).text();
-if (maze == "Random"){
-randomMaze();
-} else if (maze == "Recursive Division"){
+//if (maze == "Random"){
+//randomMaze();
+//} else 
+   if (maze == "Recursive Division"){
 recursiveDivMaze(null);
 } else if (maze == "Recursive Division (Vertical Skew)"){
 recursiveDivMaze("VERTICAL");
