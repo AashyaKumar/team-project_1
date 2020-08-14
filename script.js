@@ -13,7 +13,7 @@ var firstCell = [11, 15];
 var lastCell = [11,25];
 var movingBegin = false;
 var movingFinish = false;
-//change 1
+//change 
 /*var movingCoin=false;
 var movingCoin1=false;
 var coinCell=[5,6];
